@@ -101,12 +101,6 @@ def profile_page():
 def analyze_food_page():
     return send_file(file_path("analyze_food.html"))
 
-
-@app.route("/<path:filename>")
-def static_files(filename):
-    return send_file(file_path(filename))
-
-
 @app.route("/analyze", methods=["POST"])
 @app.route("/analyze_food", methods=["POST"])
 def analyze_food():
