@@ -1,0 +1,775 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Здоровая Жизнь — Главная</title>
+
+  <style>
+    :root{
+      --bg:#F6F7FB;
+      --card:#FFFFFF;
+      --text:#0F172A;
+      --muted:#64748B;
+      --line:#E5E7EB;
+
+      --blue:#2563EB;
+      --blue-100:#EAF2FF;
+
+      --green:#16A34A;
+      --green-100:#E9F9EF;
+
+      --orange:#F97316;
+      --orange-100:#FFF1E6;
+
+      --shadow: 0 8px 20px rgba(15, 23, 42, 0.06);
+      --radius: 14px;
+
+      --container: 1100px;
+      --font: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial, "Noto Sans", "Helvetica Neue", sans-serif;
+    }
+
+    *{ box-sizing:border-box; }
+    html,body{ height:100%; }
+    body{
+      margin:0;
+      font-family:var(--font);
+      background:var(--bg);
+      color:var(--text);
+    }
+
+    /* ===== Header ===== */
+    .topbar{
+      background:#fff;
+      border-bottom:1px solid var(--line);
+    }
+    .topbar-inner{
+      max-width:var(--container);
+      margin:0 auto;
+      padding:14px 18px 10px;
+      display:flex;
+      align-items:flex-start;
+      justify-content:space-between;
+      gap:16px;
+    }
+
+    .brand{
+      display:flex;
+      align-items:center;
+      gap:10px;
+      min-width:220px;
+    }
+    .logo{
+      width:38px;height:38px;
+      border-radius:12px;
+      display:grid;place-items:center;
+      background:linear-gradient(180deg,#34D399,#22C55E);
+      box-shadow:0 6px 14px rgba(34,197,94,.18);
+      flex:0 0 auto;
+    }
+    .logo svg{ width:22px;height:22px; }
+
+    .brand-text{
+      display:flex;
+      flex-direction:column;
+      gap:2px;
+      line-height:1.05;
+    }
+    .brand-title{
+      font-weight:900;
+      font-size:18px;
+    }
+    .brand-sub{
+      font-size:12px;
+      color:var(--muted);
+    }
+
+    .nav{
+      display:flex;
+      align-items:center;
+      gap:22px;
+      padding-top:6px;
+      flex-wrap:wrap;
+      justify-content:flex-start;
+    }
+    .nav a{
+      display:flex;
+      align-items:center;
+      gap:8px;
+      color:#334155;
+      text-decoration:none;
+      font-size:14px;
+      padding:8px 10px;
+      border-radius:10px;
+      transition:.15s ease;
+      position:relative;
+    }
+    .nav a:hover{ background:#F1F5F9; }
+    .nav a.active{
+      color:var(--blue);
+      font-weight:700;
+    }
+    .nav a.active::after{
+      content:"";
+      position:absolute;
+      left:10px;
+      right:10px;
+      bottom:-10px;
+      height:3px;
+      border-radius:999px;
+      background:var(--blue);
+    }
+
+    .nav svg{ width:16px;height:16px; }
+
+    /* ===== Layout ===== */
+    .container{
+      max-width:var(--container);
+      margin:0 auto;
+      padding:18px 18px 44px;
+    }
+
+    /* ===== Hero ===== */
+    .hero{
+      background:linear-gradient(90deg,#EEF6FF 0%, #F3F8FF 40%, #EFF6FF 100%);
+      border:1px solid #E6EEF9;
+      border-radius:18px;
+      padding:26px 26px;
+      box-shadow:0 10px 22px rgba(15,23,42,.04);
+      margin-top:12px;
+    }
+    .hero h1{
+      margin:0 0 10px;
+      font-size:34px;
+      letter-spacing:-.6px;
+    }
+    .hero p{
+      margin:0;
+      color:var(--muted);
+      max-width:720px;
+      line-height:1.55;
+      font-size:14px;
+    }
+
+    /* ===== Section title ===== */
+    .section{
+      margin-top:22px;
+    }
+    .section-title{
+      display:flex;
+      align-items:center;
+      gap:10px;
+      font-size:22px;
+      font-weight:900;
+      margin:0 0 14px;
+    }
+    .section-title .ico{
+      width:28px;height:28px;
+      display:grid;place-items:center;
+      color:var(--blue);
+    }
+    .section-title .ico svg{ width:22px;height:22px; }
+
+    /* ===== Cards grid ===== */
+    .grid-3{
+      display:grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap:18px;
+    }
+
+    .card{
+      background:var(--card);
+      border:1px solid var(--line);
+      border-radius:var(--radius);
+      box-shadow:var(--shadow);
+      padding:16px 16px 14px;
+      min-height:150px;
+    }
+
+    .card-head{
+      display:flex;
+      align-items:flex-start;
+      gap:12px;
+      margin-bottom:10px;
+    }
+
+    .card-ico{
+      width:38px;height:38px;
+      border-radius:12px;
+      display:grid;place-items:center;
+      border:1px solid rgba(37,99,235,.18);
+      background:rgba(37,99,235,.10);
+      flex:0 0 auto;
+    }
+    .card-ico.green{
+      border-color: rgba(22,163,74,.18);
+      background: rgba(22,163,74,.10);
+    }
+    .card-ico.orange{
+      border-color: rgba(249,115,22,.18);
+      background: rgba(249,115,22,.10);
+    }
+    .card-ico svg{ width:18px;height:18px; }
+
+    .card-title{
+      font-weight:900;
+      font-size:14px;
+      margin:2px 0 4px;
+    }
+    .card-desc{
+      font-size:13px;
+      color:var(--muted);
+      line-height:1.45;
+      margin:0;
+    }
+
+    .bullets{
+      margin:10px 0 0;
+      padding-left:18px;
+      color:#334155;
+      font-size:12.5px;
+      line-height:1.6;
+    }
+    .bullets li{
+      margin:4px 0;
+    }
+    .bullets li::marker{
+      color:var(--blue);
+    }
+
+    /* ===== Nutrition small cards ===== */
+    .tag{
+      display:inline-block;
+      margin-top:10px;
+      padding:6px 10px;
+      border-radius:999px;
+      font-size:11px;
+      font-weight:800;
+      background:var(--green-100);
+      color:var(--green);
+      border:1px solid rgba(22,163,74,.18);
+    }
+
+    /* ===== Recipes ===== */
+    .recipes-grid{
+      display:grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap:18px;
+      margin-top:14px;
+    }
+    .recipe{
+      background:#fff;
+      border:1px solid var(--line);
+      border-radius:16px;
+      box-shadow:var(--shadow);
+      padding:16px;
+      min-height:320px;
+    }
+    .recipe-top{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:10px;
+      margin-bottom:10px;
+    }
+    .pill{
+      display:inline-block;
+      font-size:11px;
+      font-weight:800;
+      padding:6px 10px;
+      border-radius:999px;
+      border:1px solid rgba(249,115,22,.18);
+      background:var(--orange-100);
+      color:var(--orange);
+    }
+    .time{
+      font-size:12px;
+      color:var(--muted);
+      font-weight:700;
+    }
+    .recipe-name{
+      font-weight:900;
+      font-size:14px;
+      margin:0 0 10px;
+      color:#0F172A;
+    }
+    .macro{
+      display:flex;
+      gap:18px;
+      align-items:flex-end;
+      margin-bottom:12px;
+    }
+    .macro .kcal{
+      font-size:20px;
+      font-weight:900;
+      color:var(--green);
+      line-height:1;
+    }
+    .macro .kcal small{
+      display:block;
+      font-size:10px;
+      color:var(--muted);
+      font-weight:700;
+      margin-top:4px;
+    }
+    .macro .prot{
+      font-size:18px;
+      font-weight:900;
+      color:var(--blue);
+      line-height:1;
+    }
+    .macro .prot small{
+      display:block;
+      font-size:10px;
+      color:var(--muted);
+      font-weight:700;
+      margin-top:4px;
+    }
+
+    .block-title{
+      font-weight:900;
+      font-size:12px;
+      margin:10px 0 6px;
+    }
+    .ing{
+      margin:0;
+      padding-left:18px;
+      font-size:12px;
+      color:#334155;
+      line-height:1.65;
+    }
+    .ing li{ margin:3px 0; }
+    .ing li::marker{ color:var(--green); }
+
+    .how{
+      margin:0;
+      font-size:12px;
+      color:var(--muted);
+      line-height:1.55;
+    }
+
+    /* ===== Footer ===== */
+    .footer{
+      margin-top:28px;
+      border-top:1px solid var(--line);
+      background:#fff;
+    }
+    .footer-inner{
+      max-width:var(--container);
+      margin:0 auto;
+      padding:14px 18px;
+      text-align:center;
+      color:var(--muted);
+      font-size:12px;
+    }
+
+    /* ===== Responsive ===== */
+    @media (max-width: 1050px){
+      .grid-3{ grid-template-columns:1fr; }
+      .recipes-grid{ grid-template-columns:1fr; }
+      .nav a.active::after{ display:none; }
+      .topbar-inner{ flex-direction:column; align-items:flex-start; }
+    }
+  </style>
+</head>
+
+<body>
+  <!-- HEADER -->
+  <header class="topbar">
+    <div class="topbar-inner">
+      <div class="brand">
+        <div class="logo" aria-hidden="true">
+            <!-- logo icon -->
+         <svg viewBox="0 0 24 24" fill="none">
+            <path d="M4 13c.7 5.2 4.1 8 8 8s7.3-2.8 8-8H4Z" fill="#fff" opacity=".95"/>
+            <path d="M6.2 11.6c1.2-1.9 3.4-3.1 5.8-3.1 2.3 0 4.5 1.2 5.7 3.1" stroke="#fff" stroke-width="2" stroke-linecap="round"/>
+            <path d="M8.2 8.2c.7-1.7 2.1-3 3.8-3.7" stroke="#fff" stroke-width="2" stroke-linecap="round"/>
+          </svg>
+        </div>
+        <div class="brand-text">
+          <div class="brand-title">Batyr Sport</div>
+          <div class="brand-sub">AI помощник по питанию</div>
+        </div>
+      </div>
+
+      <nav class="nav" aria-label="Навигация">
+        <a class="active" href="index.html">
+          <!-- home -->
+          <svg viewBox="0 0 24 24" fill="none">
+            <path d="M3 10.5 12 3l9 7.5V21a1 1 0 0 1-1 1h-5v-7H9v7H4a1 1 0 0 1-1-1v-10.5Z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>
+          </svg>
+          Главная
+        </a>
+
+        <a href="chat.html">
+          <!-- chat -->
+          <svg viewBox="0 0 24 24" fill="none">
+            <path d="M21 12a7 7 0 0 1-7 7H8l-5 3 1.6-4.8A7 7 0 1 1 21 12Z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>
+          </svg>
+          AI Chat-бот
+        </a>
+
+        <a href="analyze_food.html">
+          <!-- analysis -->
+          <svg viewBox="0 0 24 24" fill="none">
+            <path d="M4 19V5a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v14" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+            <path d="M8 11h8M8 15h6M8 7h8" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+          </svg>
+          Анализ еды
+        </a>
+
+        <a href="profile.html">
+          <!-- profile -->
+          <svg viewBox="0 0 24 24" fill="none">
+            <path d="M20 21a8 8 0 1 0-16 0" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+            <path d="M12 13a4 4 0 1 0 0-8 4 4 0 0 0 0 8Z" stroke="currentColor" stroke-width="2"/>
+          </svg>
+          Профиль
+        </a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- MAIN -->
+  <main class="container">
+    <!-- Hero -->
+    <section class="hero">
+      <h1>Здоровый образ жизни</h1>
+      <p>
+        Добро пожаловать! Здесь вы найдете советы по спорту, правильному питанию и<br>
+        полезные рецепты для здорового образа жизни.
+      </p>
+    </section>
+
+    <!-- Sports tips -->
+    <section class="section">
+      <h2 class="section-title">
+        <span class="ico" aria-hidden="true">
+          <!-- dumbbell -->
+          <svg viewBox="0 0 24 24" fill="none">
+            <path d="M6 10v4M4.5 9v6M8 9v6M18 10v4M19.5 9v6M16 9v6" stroke="var(--blue)" stroke-width="2" stroke-linecap="round"/>
+            <path d="M8 12h8" stroke="var(--blue)" stroke-width="2" stroke-linecap="round"/>
+          </svg>
+        </span>
+        Советы по спорту
+      </h2>
+
+      <div class="grid-3">
+        <article class="card">
+          <div class="card-head">
+            <div class="card-ico" aria-hidden="true">
+              <!-- heart -->
+              <svg viewBox="0 0 24 24" fill="none">
+                <path d="M12 21s-7-4.6-9.3-8.8C1.2 9.5 2.6 6.8 5.3 6.1c1.6-.4 3.3.2 4.4 1.5 1.1-1.3 2.8-1.9 4.4-1.5 2.7.7 4.1 3.4 2.6 6.1C19 16.4 12 21 12 21Z" stroke="var(--blue)" stroke-width="2" stroke-linejoin="round"/>
+              </svg>
+            </div>
+            <div>
+              <div class="card-title">Кардио тренировки</div>
+              <p class="card-desc">Бег, плавание или велосипед минимум 30 минут в день улучшают работу сердца</p>
+            </div>
+          </div>
+
+          <ul class="bullets">
+            <li>150 минут умеренной активности в неделю</li>
+            <li>Разминка перед тренировкой обязательна</li>
+          </ul>
+        </article>
+
+        <article class="card">
+          <div class="card-head">
+            <div class="card-ico" aria-hidden="true">
+              <!-- dumbbell small -->
+              <svg viewBox="0 0 24 24" fill="none">
+                <path d="M6 10v4M4.5 9v6M8 9v6M18 10v4M19.5 9v6M16 9v6" stroke="var(--blue)" stroke-width="2" stroke-linecap="round"/>
+                <path d="M8 12h8" stroke="var(--blue)" stroke-width="2" stroke-linecap="round"/>
+              </svg>
+            </div>
+            <div>
+              <div class="card-title">Силовые тренировки</div>
+              <p class="card-desc">Упражнения с весом укрепляют мышцы и улучшают метаболизм</p>
+            </div>
+          </div>
+
+          <ul class="bullets">
+            <li>2-3 раза в неделю</li>
+            <li>Отдых между подходами 60-90 секунд</li>
+          </ul>
+        </article>
+
+        <article class="card">
+          <div class="card-head">
+            <div class="card-ico" aria-hidden="true">
+              <!-- apple -->
+              <svg viewBox="0 0 24 24" fill="none">
+                <path d="M14.5 4.5c.9-1.2 1-2.4.9-3.3-1 .1-2.1.8-2.8 1.7-.7.8-1.2 2.1-1 3.3 1.1.1 2.1-.6 2.9-1.7Z" stroke="var(--blue)" stroke-width="2"/>
+                <path d="M12.2 7.2c1.3 0 2.3-.7 3.4-.7 1.3 0 2.4.7 3.1 1.8-2.6 1.6-2.2 5.4.5 6.5-.5 1.2-1.2 2.3-2 3.3-.8.9-1.7 1.8-3 1.8-1.2 0-1.6-.7-3.1-.7s-1.9.7-3.1.7c-1.2 0-2.1-1-2.9-2-1.7-2.2-3-6.3-1.2-9 1-1.5 2.6-2.4 4.4-2.4 1.3 0 2.4.7 3.9.7Z" stroke="var(--blue)" stroke-width="2" stroke-linejoin="round"/>
+              </svg>
+            </div>
+            <div>
+              <div class="card-title">Растяжка и гибкость</div>
+              <p class="card-desc">Йога и стретчинг помогают избежать травм и улучшить подвижность</p>
+            </div>
+          </div>
+
+          <ul class="bullets">
+            <li>Ежедневно 10-15 минут</li>
+            <li>После тренировки обязательна</li>
+          </ul>
+        </article>
+      </div>
+    </section>
+
+    <!-- Nutrition -->
+    <section class="section">
+      <h2 class="section-title">
+        <span class="ico" aria-hidden="true" style="color:var(--green);">
+          <!-- apple icon -->
+          <svg viewBox="0 0 24 24" fill="none">
+            <path d="M14.5 4.5c.9-1.2 1-2.4.9-3.3-1 .1-2.1.8-2.8 1.7-.7.8-1.2 2.1-1 3.3 1.1.1 2.1-.6 2.9-1.7Z" stroke="var(--green)" stroke-width="2"/>
+            <path d="M12.2 7.2c1.3 0 2.3-.7 3.4-.7 1.3 0 2.4.7 3.1 1.8-2.6 1.6-2.2 5.4.5 6.5-.5 1.2-1.2 2.3-2 3.3-.8.9-1.7 1.8-3 1.8-1.2 0-1.6-.7-3.1-.7s-1.9.7-3.1.7c-1.2 0-2.1-1-2.9-2-1.7-2.2-3-6.3-1.2-9 1-1.5 2.6-2.4 4.4-2.4 1.3 0 2.4.7 3.9.7Z" stroke="var(--green)" stroke-width="2" stroke-linejoin="round"/>
+          </svg>
+        </span>
+        Правильное питание
+      </h2>
+
+      <div class="grid-3">
+        <article class="card">
+          <div class="card-head">
+            <div class="card-ico green" aria-hidden="true">
+              <!-- fork -->
+              <svg viewBox="0 0 24 24" fill="none">
+                <path d="M6 3v8M10 3v8M8 11v10" stroke="var(--green)" stroke-width="2" stroke-linecap="round"/>
+                <path d="M16 3v7a3 3 0 0 0 3 3v8" stroke="var(--green)" stroke-width="2" stroke-linecap="round"/>
+              </svg>
+            </div>
+            <div>
+              <div class="card-title">Сбалансированное питание</div>
+              <p class="card-desc">Комбинация белков, углеводов и жиров в правильных пропорциях</p>
+              <span class="tag">2000-2500 ккал/день</span>
+            </div>
+          </div>
+        </article>
+
+        <article class="card">
+          <div class="card-head">
+            <div class="card-ico green" aria-hidden="true">
+              <!-- drop -->
+              <svg viewBox="0 0 24 24" fill="none">
+                <path d="M12 2s7 7.2 7 12a7 7 0 0 1-14 0c0-4.8 7-12 7-12Z" stroke="var(--green)" stroke-width="2" stroke-linejoin="round"/>
+              </svg>
+            </div>
+            <div>
+              <div class="card-title">Питьевой режим</div>
+              <p class="card-desc">Достаточное количество воды необходимо для всех процессов в организме</p>
+              <span class="tag">2-3 литра воды/день</span>
+            </div>
+          </div>
+        </article>
+
+        <article class="card">
+          <div class="card-head">
+            <div class="card-ico green" aria-hidden="true">
+              <!-- clock -->
+              <svg viewBox="0 0 24 24" fill="none">
+                <path d="M12 22a10 10 0 1 0 0-20 10 10 0 0 0 0 20Z" stroke="var(--green)" stroke-width="2"/>
+                <path d="M12 6v6l4 2" stroke="var(--green)" stroke-width="2" stroke-linecap="round"/>
+              </svg>
+            </div>
+            <div>
+              <div class="card-title">Регулярность приемов пищи</div>
+              <p class="card-desc">4-5 приемов пищи в день небольшими порциями</p>
+              <span class="tag">Каждые 3-4 часа</span>
+            </div>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- Recipes -->
+    <section class="section">
+      <h2 class="section-title">
+        <span class="ico" aria-hidden="true" style="color:var(--orange);">
+          <!-- cookbook -->
+          <svg viewBox="0 0 24 24" fill="none">
+            <path d="M6 4h11a3 3 0 0 1 3 3v13a2 2 0 0 0-2-2H6a3 3 0 0 0-3 3V7a3 3 0 0 1 3-3Z" stroke="var(--orange)" stroke-width="2" stroke-linejoin="round"/>
+            <path d="M7 8h8M7 12h8M7 16h6" stroke="var(--orange)" stroke-width="2" stroke-linecap="round"/>
+          </svg>
+        </span>
+        Рецепты здорового питания
+      </h2>
+
+      <div class="recipes-grid">
+        <!-- 1 -->
+        <article class="recipe">
+          <div class="recipe-top">
+            <span class="pill">Завтрак</span>
+            <span class="time">15 мин</span>
+          </div>
+          <h3 class="recipe-name">Овсяная каша с ягодами</h3>
+
+          <div class="macro">
+            <div class="kcal">350 <small>ккал</small></div>
+            <div class="prot">12г <small>белок</small></div>
+          </div>
+
+          <div class="block-title">Ингредиенты:</div>
+          <ul class="ing">
+            <li>Овсяные хлопья - 50г</li>
+            <li>Молоко - 200мл</li>
+            <li>Ягоды - 100г</li>
+            <li>Мед - 1 ч.л.</li>
+          </ul>
+
+          <div class="block-title">Приготовление:</div>
+          <p class="how">
+            Сварите овсянку на молоке, добавьте свежие ягоды и мед. Можно добавить орехи.
+          </p>
+        </article>
+
+        <!-- 2 -->
+        <article class="recipe">
+          <div class="recipe-top">
+            <span class="pill">Обед</span>
+            <span class="time">30 мин</span>
+          </div>
+          <h3 class="recipe-name">Куриная грудка с овощами</h3>
+
+          <div class="macro">
+            <div class="kcal">450 <small>ккал</small></div>
+            <div class="prot">42г <small>белок</small></div>
+          </div>
+
+          <div class="block-title">Ингредиенты:</div>
+          <ul class="ing">
+            <li>Куриная грудка - 200г</li>
+            <li>Брокколи - 150г</li>
+            <li>Морковь - 100г</li>
+            <li>Оливковое масло - 1 ст.л.</li>
+          </ul>
+
+          <div class="block-title">Приготовление:</div>
+          <p class="how">
+            Запеките курицу в духовке, отварите овощи на пару. Приправьте специями.
+          </p>
+        </article>
+
+        <!-- 3 -->
+        <article class="recipe">
+          <div class="recipe-top">
+            <span class="pill">Ужин</span>
+            <span class="time">10 мин</span>
+          </div>
+          <h3 class="recipe-name">Греческий салат</h3>
+
+          <div class="macro">
+            <div class="kcal">280 <small>ккал</small></div>
+            <div class="prot">8г <small>белок</small></div>
+          </div>
+
+          <div class="block-title">Ингредиенты:</div>
+          <ul class="ing">
+            <li>Помидоры - 200г</li>
+            <li>Огурцы - 150г</li>
+            <li>Фета - 50г</li>
+            <li>Оливки - 30г</li>
+            <li>Оливковое масло - 2 ст.л.</li>
+          </ul>
+
+          <div class="block-title">Приготовление:</div>
+          <p class="how">
+            Нарежьте овощи кубиками, добавьте сыр фета и оливки. Заправьте маслом.
+          </p>
+        </article>
+
+        <!-- 4 -->
+        <article class="recipe">
+          <div class="recipe-top">
+            <span class="pill">Перекус</span>
+            <span class="time">5 мин</span>
+          </div>
+          <h3 class="recipe-name">Смузи с бананом и шпинатом</h3>
+
+          <div class="macro">
+            <div class="kcal">200 <small>ккал</small></div>
+            <div class="prot">6г <small>белок</small></div>
+          </div>
+
+          <div class="block-title">Ингредиенты:</div>
+          <ul class="ing">
+            <li>Банан - 1 шт</li>
+            <li>Шпинат - 50г</li>
+            <li>Йогурт - 150мл</li>
+            <li>Мед - 1 ч.л.</li>
+          </ul>
+
+          <div class="block-title">Приготовление:</div>
+          <p class="how">
+            Взбейте все ингредиенты в блендере до однородной массы.
+          </p>
+        </article>
+
+        <!-- 5 -->
+        <article class="recipe">
+          <div class="recipe-top">
+            <span class="pill">Обед</span>
+            <span class="time">25 мин</span>
+          </div>
+          <h3 class="recipe-name">Запеченная рыба с лимоном</h3>
+
+          <div class="macro">
+            <div class="kcal">380 <small>ккал</small></div>
+            <div class="prot">35г <small>белок</small></div>
+          </div>
+
+          <div class="block-title">Ингредиенты:</div>
+          <ul class="ing">
+            <li>Филе рыбы - 200г</li>
+            <li>Лимон - 1 шт</li>
+            <li>Чеснок - 2 зубчика</li>
+            <li>Укроп - по вкусу</li>
+          </ul>
+
+          <div class="block-title">Приготовление:</div>
+          <p class="how">
+            Запеките рыбу с лимоном и чесноком в фольге при 180°C.
+          </p>
+        </article>
+
+        <!-- 6 -->
+        <article class="recipe">
+          <div class="recipe-top">
+            <span class="pill">Ужин</span>
+            <span class="time">20 мин</span>
+          </div>
+          <h3 class="recipe-name">Киноа с овощами</h3>
+
+          <div class="macro">
+            <div class="kcal">320 <small>ккал</small></div>
+            <div class="prot">14г <small>белок</small></div>
+          </div>
+
+          <div class="block-title">Ингредиенты:</div>
+          <ul class="ing">
+            <li>Киноа - 80г</li>
+            <li>Болгарский перец - 100г</li>
+            <li>Кукуруза - 50г</li>
+            <li>Авокадо - 50г</li>
+          </ul>
+
+          <div class="block-title">Приготовление:</div>
+          <p class="how">
+            Отварите киноа, обжарьте овощи, смешайте и добавьте авокадо.
+          </p>
+        </article>
+      </div>
+    </section>
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="footer-inner">
+      © 2026 Здоровая Жизнь. AI-powered платформа для здорового питания и образа жизни
+    </div>
+  </footer>
+</body>
+</html>

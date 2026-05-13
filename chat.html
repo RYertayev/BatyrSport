@@ -1,0 +1,376 @@
+<!doctype html>
+<html lang="ru">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+
+    <title>Batyr Sport — AI Чат</title>
+
+    <style>
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            background: #f4f7fb;
+            color: #1e293b;
+        }
+
+        /* ===== HEADER ===== */
+
+        header {
+            background: white;
+            border-bottom: 1px solid #e2e8f0;
+            padding: 18px 24px;
+        }
+
+        .header-container {
+            max-width: 1200px;
+            margin: auto;
+
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+            color: #16a34a;
+        }
+
+        nav {
+            display: flex;
+            gap: 20px;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: #475569;
+            font-weight: 600;
+        }
+
+        nav a:hover {
+            color: #2563eb;
+        }
+
+        /* ===== MAIN ===== */
+
+        .container {
+            max-width: 1000px;
+            margin: auto;
+            padding: 30px 20px;
+        }
+
+        .hero {
+            background: #eef6ff;
+            border: 1px solid #dbeafe;
+            border-radius: 18px;
+            padding: 35px;
+            margin-bottom: 24px;
+        }
+
+        .hero h1 {
+            font-size: 38px;
+            margin-bottom: 12px;
+        }
+
+        .hero p {
+            color: #475569;
+            line-height: 1.7;
+        }
+
+        /* ===== CHAT ===== */
+
+        .chat-card {
+            background: white;
+            border-radius: 18px;
+            overflow: hidden;
+
+            box-shadow: 0 10px 25px rgba(0,0,0,0.05);
+        }
+
+        .chat-box {
+            padding: 24px;
+            min-height: 500px;
+            max-height: 500px;
+            overflow-y: auto;
+
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+
+        .message {
+            max-width: 80%;
+            padding: 14px 18px;
+            border-radius: 16px;
+            line-height: 1.6;
+            white-space: pre-wrap;
+        }
+
+        .bot {
+            background: #f1f5f9;
+            align-self: flex-start;
+        }
+
+        .user {
+            background: #2563eb;
+            color: white;
+            align-self: flex-end;
+        }
+
+        /* ===== INPUT ===== */
+
+        .chat-input {
+            border-top: 1px solid #e2e8f0;
+            padding: 18px;
+
+            display: flex;
+            gap: 12px;
+        }
+
+        .chat-input input {
+            flex: 1;
+
+            border: 1px solid #cbd5e1;
+            border-radius: 12px;
+
+            padding: 14px;
+
+            font-size: 15px;
+            outline: none;
+        }
+
+        .chat-input button {
+            border: none;
+            border-radius: 12px;
+
+            background: #2563eb;
+            color: white;
+
+            padding: 0 24px;
+
+            font-weight: bold;
+            cursor: pointer;
+
+            transition: 0.3s;
+        }
+
+        .chat-input button:hover {
+            background: #1d4ed8;
+        }
+
+        /* ===== FOOTER ===== */
+
+        footer {
+            margin-top: 40px;
+            background: white;
+            border-top: 1px solid #e2e8f0;
+
+            padding: 20px;
+            text-align: center;
+
+            color: #64748b;
+        }
+
+        /* ===== MOBILE ===== */
+
+        @media (max-width: 768px) {
+
+            nav {
+                display: none;
+            }
+
+            .hero h1 {
+                font-size: 28px;
+            }
+
+            .chat-input {
+                flex-direction: column;
+            }
+
+            .chat-input button {
+                height: 50px;
+            }
+
+            .message {
+                max-width: 100%;
+            }
+
+        }
+
+    </style>
+</head>
+
+<body>
+
+<header>
+
+    <div class="header-container">
+
+        <div class="logo">
+            🥗 Batyr Sport
+        </div>
+
+        <nav>
+            <a href="index.html">Главная</a>
+            <a href="chat.html">AI Чат</a>
+            <a href="analyze_food.html">Анализ еды</a>
+            <a href="profile.html">Профиль</a>
+        </nav>
+
+    </div>
+
+</header>
+
+<div class="container">
+
+    <section class="hero">
+
+        <h1>
+            AI Чат-бот по питанию
+        </h1>
+
+        <p>
+            Получайте рекомендации по питанию,
+            образу жизни, калориям, рациону и здоровым привычкам.
+        </p>
+
+    </section>
+
+    <section class="chat-card">
+
+        <div class="chat-box" id="chatBox">
+
+            <div class="message bot">
+                Здравствуйте 👋
+
+                Я AI-консультант по здоровому питанию.
+                Задайте вопрос о еде, калориях,
+                похудении, наборе массы или рационе.
+            </div>
+
+        </div>
+
+        <div class="chat-input">
+
+            <input
+                type="text"
+                id="question"
+                placeholder="Введите сообщение..."
+            >
+
+            <button id="sendBtn">
+                Отправить
+            </button>
+
+        </div>
+
+    </section>
+
+</div>
+
+<footer>
+    © 2026 Batyr Sport
+</footer>
+
+<script>
+
+    const input = document.getElementById("question");
+    const sendBtn = document.getElementById("sendBtn");
+    const chatBox = document.getElementById("chatBox");
+
+    async function sendMessage() {
+
+        const question = input.value.trim();
+
+        if (!question) return;
+
+        // USER MESSAGE
+
+        const userMessage = document.createElement("div");
+
+        userMessage.className = "message user";
+
+        userMessage.textContent = question;
+
+        chatBox.appendChild(userMessage);
+
+        input.value = "";
+
+        // SCROLL
+
+        chatBox.scrollTop = chatBox.scrollHeight;
+
+        try {
+
+            const response = await fetch("/chat", {
+
+                method: "POST",
+
+                headers: {
+                    "Content-Type": "application/json"
+                },
+
+                body: JSON.stringify({
+                    question: question
+                })
+
+            });
+
+            const data = await response.json();
+
+            // BOT MESSAGE
+
+            const botMessage = document.createElement("div");
+
+            botMessage.className = "message bot";
+
+            botMessage.textContent =
+                data.answer || "Ответ не получен.";
+
+            chatBox.appendChild(botMessage);
+
+            // SCROLL
+
+            chatBox.scrollTop = chatBox.scrollHeight;
+
+        } catch (error) {
+
+            const errorMessage = document.createElement("div");
+
+            errorMessage.className = "message bot";
+
+            errorMessage.textContent =
+                "Ошибка соединения: " + error.message;
+
+            chatBox.appendChild(errorMessage);
+
+        }
+
+    }
+
+    // BUTTON
+
+    sendBtn.addEventListener("click", sendMessage);
+
+    // ENTER
+
+    input.addEventListener("keydown", function(event) {
+
+        if (event.key === "Enter") {
+            sendMessage();
+        }
+
+    });
+
+</script>
+
+</body>
+</html>

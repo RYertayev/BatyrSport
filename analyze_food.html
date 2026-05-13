@@ -1,0 +1,403 @@
+<!doctype html>
+<html lang="ru">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+
+    <title>Batyr Sport — Анализ еды</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            background: #f4f7fb;
+            color: #1e293b;
+        }
+
+        /* ===== HEADER ===== */
+
+        header {
+            background: white;
+            border-bottom: 1px solid #e2e8f0;
+            padding: 18px 24px;
+        }
+
+        .header-container {
+            max-width: 1200px;
+            margin: auto;
+
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+            color: #16a34a;
+        }
+
+        nav {
+            display: flex;
+            gap: 20px;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: #475569;
+            font-weight: 600;
+        }
+
+        nav a:hover {
+            color: #2563eb;
+        }
+
+        /* ===== MAIN ===== */
+
+        .container {
+            max-width: 1100px;
+            margin: auto;
+            padding: 30px 20px;
+        }
+
+        .hero {
+            background: #fff8e6;
+            border: 1px solid #f1e7c8;
+            border-radius: 20px;
+            padding: 40px;
+            margin-bottom: 24px;
+        }
+
+        .hero h1 {
+            font-size: 40px;
+            margin-bottom: 16px;
+        }
+
+        .hero p {
+            color: #475569;
+            line-height: 1.7;
+        }
+
+        /* ===== GRID ===== */
+
+        .grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 24px;
+        }
+
+        .card {
+            background: white;
+            border-radius: 18px;
+            padding: 24px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.05);
+        }
+
+        .card h2 {
+            margin-bottom: 10px;
+        }
+
+        .card p {
+            color: #64748b;
+            margin-bottom: 20px;
+        }
+
+        /* ===== UPLOAD ===== */
+
+        .upload-box {
+            border: 2px dashed #cbd5e1;
+            border-radius: 16px;
+            padding: 40px;
+            text-align: center;
+            transition: 0.3s;
+        }
+
+        .upload-box:hover {
+            border-color: #2563eb;
+        }
+
+        .upload-box input {
+            margin-top: 20px;
+        }
+
+        /* ===== BUTTON ===== */
+
+        .btn {
+            margin-top: 20px;
+
+            width: 100%;
+            padding: 14px;
+
+            border: none;
+            border-radius: 12px;
+
+            background: #2563eb;
+            color: white;
+
+            font-size: 16px;
+            font-weight: bold;
+
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .btn:hover {
+            background: #1d4ed8;
+        }
+
+        /* ===== RESULT ===== */
+
+        .result-box {
+            background: #f8fafc;
+            border-radius: 14px;
+            padding: 20px;
+
+            min-height: 350px;
+
+            white-space: pre-wrap;
+            line-height: 1.7;
+        }
+
+        /* ===== FEATURES ===== */
+
+        .features {
+            margin-top: 30px;
+
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+        }
+
+        .feature {
+            background: white;
+            border-radius: 16px;
+            padding: 20px;
+
+            box-shadow: 0 10px 20px rgba(0,0,0,0.05);
+        }
+
+        .feature h3 {
+            margin-bottom: 10px;
+        }
+
+        .feature p {
+            color: #64748b;
+            line-height: 1.6;
+        }
+
+        /* ===== FOOTER ===== */
+
+        footer {
+            margin-top: 40px;
+            background: white;
+            border-top: 1px solid #e2e8f0;
+            padding: 20px;
+            text-align: center;
+            color: #64748b;
+        }
+
+        /* ===== MOBILE ===== */
+
+        @media (max-width: 900px) {
+
+            .grid {
+                grid-template-columns: 1fr;
+            }
+
+            .features {
+                grid-template-columns: 1fr;
+            }
+
+            .hero h1 {
+                font-size: 30px;
+            }
+
+            nav {
+                display: none;
+            }
+
+        }
+    </style>
+</head>
+
+<body>
+
+<header>
+
+    <div class="header-container">
+
+        <div class="logo">
+            🥗 Batyr Sport
+        </div>
+
+        <nav>
+            <a href="index.html">Главная</a>
+            <a href="chat.html">AI Чат</a>
+            <a href="analyze_food.html">Анализ еды</a>
+            <a href="profile.html">Профиль</a>
+        </nav>
+
+    </div>
+
+</header>
+
+<div class="container">
+
+    <section class="hero">
+
+        <h1>
+            Анализ еды по фото
+        </h1>
+
+        <p>
+            Загрузите фотографию блюда и получите AI-анализ:
+            калории, белки, жиры, углеводы,
+            оценку пользы и рекомендации по питанию.
+        </p>
+
+    </section>
+
+    <section class="grid">
+
+        <!-- LEFT -->
+
+        <div class="card">
+
+            <h2>Загрузите фото</h2>
+
+            <p>
+                Поддерживаются JPG, PNG, HEIC
+            </p>
+
+            <div class="upload-box">
+
+                <input
+                    type="file"
+                    id="file"
+                    accept="image/*"
+                >
+
+                <button
+                    class="btn"
+                    id="scanBtn"
+                >
+                    Сканировать
+                </button>
+
+            </div>
+
+        </div>
+
+        <!-- RIGHT -->
+
+        <div class="card">
+
+            <h2>Результат анализа</h2>
+
+            <p>
+                AI анализирует изображение еды
+            </p>
+
+            <div
+                class="result-box"
+                id="result"
+            >
+                Загрузите фото для анализа
+            </div>
+
+        </div>
+
+    </section>
+
+    <!-- FEATURES -->
+
+    <section class="features">
+
+        <div class="feature">
+            <h3>🕌 Предпочтения</h3>
+
+            <p>
+                Учитываем религиозные и пищевые ограничения.
+            </p>
+        </div>
+
+        <div class="feature">
+            <h3>🏥 Здоровье</h3>
+
+            <p>
+                Рекомендации с учетом диабета,
+                аллергий и других особенностей.
+            </p>
+        </div>
+
+        <div class="feature">
+            <h3>📊 AI Анализ</h3>
+
+            <p>
+                Искусственный интеллект оценивает
+                пищевую ценность блюда.
+            </p>
+        </div>
+
+    </section>
+
+</div>
+
+<footer>
+    © 2026 Batyr Sport
+</footer>
+
+<script>
+
+    const API_URL = "/analyze_food";
+
+    const fileInput = document.getElementById("file");
+    const scanBtn = document.getElementById("scanBtn");
+    const resultBox = document.getElementById("result");
+
+    scanBtn.addEventListener("click", async () => {
+
+        const file = fileInput.files[0];
+
+        if (!file) {
+            resultBox.textContent = "Сначала выберите фото.";
+            return;
+        }
+
+        const formData = new FormData();
+
+        formData.append("image", file);
+
+        resultBox.textContent = "AI анализирует фото...";
+
+        try {
+
+            const response = await fetch(API_URL, {
+                method: "POST",
+                body: formData
+            });
+
+            const data = await response.json();
+
+            resultBox.textContent =
+                data.result || "Ответ не получен.";
+
+        } catch (error) {
+
+            resultBox.textContent =
+                "Ошибка соединения: " + error.message;
+
+        }
+
+    });
+
+</script>
+
+</body>
+</html>

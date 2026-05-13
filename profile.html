@@ -1,0 +1,857 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Здоровая Жизнь — Профиль</title>
+  <style>
+    :root{
+      --bg:#F6F7FB;
+      --card:#FFFFFF;
+      --text:#0F172A;
+      --muted:#64748B;
+      --muted2:#94A3B8;
+      --line:#E5E7EB;
+
+      --blue:#2563EB;
+      --blue-100:#EEF6FF;
+
+      --purple:#A855F7;
+      --purple-100:rgba(168,85,247,.10);
+
+      --green:#16A34A;
+      --green-100:rgba(22,163,74,.10);
+
+      --red:#EF4444;
+      --red-100:rgba(239,68,68,.10);
+
+      --shadow: 0 10px 26px rgba(15, 23, 42, .06);
+      --radius: 14px;
+
+      --container: 1120px;
+      --font: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial, "Noto Sans", "Helvetica Neue", sans-serif;
+
+      --focus: 0 0 0 4px rgba(37,99,235,.15);
+    }
+    *{ box-sizing:border-box; }
+    html,body{ height:100%; }
+    body{
+      margin:0;
+      font-family:var(--font);
+      background:var(--bg);
+      color:var(--text);
+    }
+
+    /* ===== Header ===== */
+    .topbar{
+      background:#fff;
+      border-bottom:1px solid var(--line);
+    }
+    .topbar-inner{
+      max-width:var(--container);
+      margin:0 auto;
+      padding:14px 18px 10px;
+      display:flex;
+      align-items:flex-start;
+      justify-content:space-between;
+      gap:16px;
+    }
+    .brand{
+      display:flex;
+      align-items:center;
+      gap:10px;
+      min-width:260px;
+    }
+    .logo{
+      width:42px;height:42px;
+      border-radius:14px;
+      display:grid;place-items:center;
+      background:linear-gradient(180deg,#34D399,#22C55E);
+      box-shadow:0 6px 14px rgba(34,197,94,.18);
+      flex:0 0 auto;
+    }
+    .logo svg{ width:22px;height:22px; }
+
+    .brand-text{
+      display:flex;
+      flex-direction:column;
+      gap:2px;
+      line-height:1.05;
+    }
+    .brand-title{
+      font-weight:900;
+      font-size:18px;
+    }
+    .brand-sub{
+      font-size:12px;
+      color:var(--muted);
+    }
+
+    .nav{
+      display:flex;
+      align-items:center;
+      gap:22px;
+      padding-top:6px;
+      flex-wrap:wrap;
+    }
+    .nav a{
+      display:flex;
+      align-items:center;
+      gap:8px;
+      color:#334155;
+      text-decoration:none;
+      font-size:14px;
+      padding:8px 10px;
+      border-radius:10px;
+      transition:.15s ease;
+      position:relative;
+    }
+    .nav a:hover{ background:#F1F5F9; }
+    .nav a.active{
+      color:var(--blue);
+      font-weight:800;
+    }
+    .nav a.active::after{
+      content:"";
+      position:absolute;
+      left:10px;
+      right:10px;
+      bottom:-10px;
+      height:3px;
+      border-radius:999px;
+      background:var(--blue);
+    }
+    .nav svg{ width:16px;height:16px; }
+
+    /* ===== Main ===== */
+    .container{
+      max-width:var(--container);
+      margin:0 auto;
+      padding:18px 18px 44px;
+    }
+
+    /* Header banner (like soft gradient) */
+    .hero{
+      background: radial-gradient(900px 260px at 20% 30%, rgba(37,99,235,.08), transparent 65%),
+                  radial-gradient(700px 220px at 85% 25%, rgba(168,85,247,.10), transparent 60%),
+                  linear-gradient(180deg, #F2F7FF 0%, #F6F7FB 100%);
+      border:1px solid #E6EEF9;
+      border-radius:18px;
+      padding:26px 26px;
+      box-shadow:0 10px 22px rgba(15,23,42,.04);
+      margin-top:12px;
+    }
+    .hero h1{
+      margin:0 0 8px;
+      font-size:32px;
+      letter-spacing:-.6px;
+    }
+    .hero p{
+      margin:0;
+      color:var(--muted);
+      max-width:900px;
+      line-height:1.55;
+      font-size:14px;
+    }
+
+    /* Layout: left forms + right sidebar */
+    .layout{
+      margin-top:18px;
+      display:grid;
+      grid-template-columns: 1fr 340px;
+      gap:18px;
+      align-items:start;
+    }
+
+    .card{
+      background:#fff;
+      border:1px solid var(--line);
+      border-radius:16px;
+      box-shadow:var(--shadow);
+      padding:18px;
+    }
+
+    .section-card{
+      margin-bottom:18px;
+    }
+
+    .section-head{
+      display:flex;
+      align-items:flex-start;
+      gap:10px;
+      margin-bottom:14px;
+    }
+    .sec-ico{
+      width:26px;height:26px;
+      display:grid;place-items:center;
+      flex:0 0 auto;
+      margin-top:1px;
+    }
+    .sec-ico.blue{ color: var(--blue); }
+    .sec-ico.green{ color: var(--green); }
+    .sec-ico.red{ color: var(--red); }
+    .sec-ico svg{ width:20px;height:20px; }
+
+    .section-title{
+      font-weight:900;
+      font-size:14px;
+      margin:0;
+    }
+    .section-sub{
+      margin:4px 0 0;
+      color:var(--muted);
+      font-size:13px;
+    }
+
+    /* Form grid */
+    .grid-3{
+      display:grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap:14px;
+    }
+    .grid-2{
+      display:grid;
+      grid-template-columns: 1fr 1fr;
+      gap:14px;
+    }
+    .grid-3-2{
+      display:grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap:14px;
+    }
+
+    .field{
+      display:flex;
+      flex-direction:column;
+      gap:6px;
+    }
+    label{
+      font-size:12px;
+      color:#334155;
+      font-weight:800;
+    }
+
+    input[type="text"],
+    input[type="number"],
+    textarea,
+    select{
+      width:100%;
+      border:1px solid #EEF0F3;
+      background:#F3F4F6;
+      border-radius:10px;
+      height:38px;
+      padding:0 12px;
+      font-size:13px;
+      outline:none;
+      color:#111827;
+      transition:.15s ease;
+    }
+    textarea{
+      height:auto;
+      min-height:70px;
+      padding:10px 12px;
+      line-height:1.45;
+      resize: vertical;
+    }
+    input::placeholder, textarea::placeholder{
+      color:#9CA3AF;
+    }
+    input:focus, textarea:focus, select:focus{
+      background:#fff;
+      border-color: rgba(37,99,235,.55);
+      box-shadow: var(--focus);
+    }
+
+    /* invalid highlight */
+    .invalid input, .invalid select, .invalid textarea{
+      border-color: rgba(239,68,68,.55);
+      box-shadow: 0 0 0 4px rgba(239,68,68,.12);
+      background:#FFF7F7;
+    }
+
+    /* Sidebar cards */
+    .stat-card{
+      display:flex;
+      align-items:center;
+      gap:10px;
+      padding:18px;
+    }
+    .stat-ico{
+      width:22px;height:22px;
+      border-radius:999px;
+      background: var(--purple-100);
+      border:1px solid rgba(168,85,247,.18);
+      display:grid;place-items:center;
+      color:var(--purple);
+      flex:0 0 auto;
+    }
+    .stat-title{
+      font-weight:900;
+      font-size:14px;
+      margin:0;
+    }
+
+    .tip{
+      margin-top:14px;
+      background: linear-gradient(180deg, rgba(37,99,235,.06), rgba(168,85,247,.04));
+      border:1px solid rgba(37,99,235,.12);
+      border-radius:16px;
+      padding:16px;
+    }
+    .tip-head{
+      display:flex;
+      align-items:center;
+      gap:8px;
+      font-weight:900;
+      margin:0 0 8px;
+      font-size:14px;
+    }
+    .tip p{
+      margin:0;
+      color:var(--muted);
+      font-size:13px;
+      line-height:1.5;
+    }
+
+    /* Health checkboxes */
+    .checks{
+      margin-top:6px;
+      display:grid;
+      grid-template-columns: 1fr 1fr;
+      gap:8px 18px;
+      align-items:start;
+    }
+    .chk{
+      display:flex;
+      align-items:center;
+      gap:10px;
+      font-size:13px;
+      color:#111827;
+      user-select:none;
+    }
+    .chk input{
+      width:16px;height:16px;
+      accent-color: var(--blue);
+    }
+
+    /* Save button */
+    .actions{
+      margin-top:8px;
+      display:flex;
+      justify-content:flex-start;
+    }
+    .btn{
+      display:inline-flex;
+      align-items:center;
+      gap:10px;
+      border-radius:12px;
+      height:42px;
+      padding:0 16px;
+      border:1px solid #0B1220;
+      background:#0B1220;
+      color:#fff;
+      font-weight:900;
+      font-size:13px;
+      cursor:pointer;
+      box-shadow: 0 12px 22px rgba(15,23,42,.18);
+      transition:.15s ease;
+    }
+    .btn:hover{ filter:brightness(1.06); }
+    .btn:active{ transform: translateY(1px); }
+    .btn svg{ width:16px;height:16px; }
+
+    /* Toast */
+    .toast{
+      position: fixed;
+      left: 50%;
+      transform: translateX(-50%);
+      bottom: 18px;
+      background: rgba(15,23,42,.92);
+      color:#fff;
+      border:1px solid rgba(255,255,255,.12);
+      border-radius: 999px;
+      padding: 10px 14px;
+      font-size: 13px;
+      font-weight: 800;
+      box-shadow: 0 18px 36px rgba(0,0,0,.18);
+      opacity:0;
+      pointer-events:none;
+      transition: .18s ease;
+    }
+    .toast.show{ opacity:1; }
+
+    /* Footer */
+    .footer{
+      margin-top:28px;
+      border-top:1px solid var(--line);
+      background:#fff;
+    }
+    .footer-inner{
+      max-width:var(--container);
+      margin:0 auto;
+      padding:14px 18px;
+      text-align:center;
+      color:var(--muted);
+      font-size:12px;
+    }
+
+    @media (max-width: 1050px){
+      .topbar-inner{ flex-direction:column; align-items:flex-start; }
+      .nav a.active::after{ display:none; }
+      .layout{ grid-template-columns: 1fr; }
+      .grid-3, .grid-3-2{ grid-template-columns:1fr; }
+      .checks{ grid-template-columns:1fr; }
+    }
+  </style>
+</head>
+
+<body>
+  <!-- HEADER -->
+  <header class="topbar">
+    <div class="topbar-inner">
+      <div class="brand">
+        <div class="logo" aria-hidden="true">
+          <!-- salad bowl -->
+          <svg viewBox="0 0 24 24" fill="none">
+            <path d="M4 13c.7 5.2 4.1 8 8 8s7.3-2.8 8-8H4Z" fill="#fff" opacity=".95"/>
+            <path d="M6.2 11.6c1.2-1.9 3.4-3.1 5.8-3.1 2.3 0 4.5 1.2 5.7 3.1" stroke="#fff" stroke-width="2" stroke-linecap="round"/>
+            <path d="M8.2 8.2c.7-1.7 2.1-3 3.8-3.7" stroke="#fff" stroke-width="2" stroke-linecap="round"/>
+          </svg>
+        </div>
+        <div class="brand-text">
+          <div class="brand-title">Batyr Sport</div>
+          <div class="brand-sub">AI помощник по питанию</div>
+        </div>
+      </div>
+
+      <nav class="nav" aria-label="Навигация">
+        <a href="index.html">
+          <!-- home -->
+          <svg viewBox="0 0 24 24" fill="none">
+            <path d="M3 10.5 12 3l9 7.5V21a1 1 0 0 1-1 1h-5v-7H9v7H4a1 1 0 0 1-1-1v-10.5Z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>
+          </svg>
+          Главная
+        </a>
+
+        <a href="chat.html">
+          <!-- chat -->
+          <svg viewBox="0 0 24 24" fill="none">
+            <path d="M21 12a7 7 0 0 1-7 7H8l-5 3 1.6-4.8A7 7 0 1 1 21 12Z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>
+          </svg>
+          AI Чат-бот
+        </a>
+
+        <a href="analyze_food.html">
+          <!-- doc -->
+          <svg viewBox="0 0 24 24" fill="none">
+            <path d="M4 19V5a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v14" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+            <path d="M8 11h8M8 15h6M8 7h8" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+          </svg>
+          Анализ еды
+        </a>
+
+        <a class="active" href="profile.html">
+          <!-- profile -->
+          <svg viewBox="0 0 24 24" fill="none">
+            <path d="M20 21a8 8 0 1 0-16 0" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+            <path d="M12 13a4 4 0 1 0 0-8 4 4 0 0 0 0 8Z" stroke="currentColor" stroke-width="2"/>
+          </svg>
+          Профиль
+        </a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container">
+    <section class="hero">
+      <h1>Профиль пользователя</h1>
+      <p>Заполните информацию о себе для получения персональных рекомендаций по питанию и тренировкам</p>
+    </section>
+
+    <section class="layout">
+      <!-- LEFT -->
+      <div>
+        <!-- Personal info -->
+        <div class="card section-card" data-section="personal">
+          <div class="section-head">
+            <div class="sec-ico blue" aria-hidden="true">
+              <!-- user -->
+              <svg viewBox="0 0 24 24" fill="none">
+                <path d="M12 13a4 4 0 1 0 0-8 4 4 0 0 0 0 8Z" stroke="currentColor" stroke-width="2"/>
+                <path d="M20 21a8 8 0 1 0-16 0" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+              </svg>
+            </div>
+            <div>
+              <div class="section-title">Личная информация</div>
+              <div class="section-sub">Основные данные о вас</div>
+            </div>
+          </div>
+
+          <div class="grid-3">
+            <div class="field">
+              <label for="lastName">Фамилия</label>
+              <input id="lastName" type="text" placeholder="Иванов" />
+            </div>
+            <div class="field">
+              <label for="firstName">Имя</label>
+              <input id="firstName" type="text" placeholder="Иван" />
+            </div>
+            <div class="field">
+              <label for="middleName">Отчество</label>
+              <input id="middleName" type="text" placeholder="Иванович" />
+            </div>
+          </div>
+
+          <div class="grid-2" style="margin-top:12px;">
+            <div class="field">
+              <label for="age">Возраст</label>
+              <input id="age" type="number" min="1" max="120" placeholder="25" />
+            </div>
+            <div class="field">
+              <label for="gender">Пол</label>
+              <select id="gender">
+                <option value="" selected>Выберите пол</option>
+                <option value="male">Мужской</option>
+                <option value="female">Женский</option>
+                <option value="other">Другой</option>
+              </select>
+            </div>
+          </div>
+        </div>
+
+        <!-- Physical params -->
+        <div class="card section-card" data-section="physical">
+          <div class="section-head">
+            <div class="sec-ico green" aria-hidden="true">
+              <!-- pulse -->
+              <svg viewBox="0 0 24 24" fill="none">
+                <path d="M3 12h4l2-5 4 10 2-5h6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </div>
+            <div>
+              <div class="section-title">Физические параметры</div>
+              <div class="section-sub">Текущие показатели и цели</div>
+            </div>
+          </div>
+
+          <div class="grid-3-2">
+            <div class="field">
+              <label for="weight">Текущий вес (кг)</label>
+              <input id="weight" type="number" min="1" max="400" placeholder="70" />
+            </div>
+            <div class="field">
+              <label for="height">Рост (см)</label>
+              <input id="height" type="number" min="50" max="250" placeholder="175" />
+            </div>
+            <div class="field">
+              <label for="targetWeight">Целевой вес (кг)</label>
+              <input id="targetWeight" type="number" min="1" max="400" placeholder="65" />
+            </div>
+          </div>
+
+          <div class="grid-2" style="margin-top:12px;">
+            <div class="field">
+              <label for="activity">Уровень активности</label>
+              <select id="activity">
+                <option value="" selected>Выберите уровень</option>
+                <option value="low">Низкий (сидячий образ жизни)</option>
+                <option value="medium">Средний (тренировки 1-3 раза/нед)</option>
+                <option value="high">Высокий (тренировки 4+ раза/нед)</option>
+              </select>
+            </div>
+            <div class="field">
+              <label for="goal">Цель</label>
+              <select id="goal">
+                <option value="" selected>Выберите цель</option>
+                <option value="lose">Снижение веса</option>
+                <option value="maintain">Поддержание веса</option>
+                <option value="gain">Набор мышечной массы</option>
+                <option value="health">Общее оздоровление</option>
+              </select>
+            </div>
+          </div>
+        </div>
+
+        <!-- Health & preferences -->
+        <div class="card section-card" data-section="health">
+          <div class="section-head">
+            <div class="sec-ico red" aria-hidden="true">
+              <!-- heart -->
+              <svg viewBox="0 0 24 24" fill="none">
+                <path d="M12 21s-7-4.6-9.3-8.8C1.2 9.5 2.6 6.8 5.3 6.1c1.6-.4 3.3.2 4.4 1.5 1.1-1.3 2.8-1.9 4.4-1.5 2.7.7 4.1 3.4 2.6 6.1C19 16.4 12 21 12 21Z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>
+              </svg>
+            </div>
+            <div>
+              <div class="section-title">Здоровье и предпочтения</div>
+              <div class="section-sub">Важная информация для персонализации</div>
+            </div>
+          </div>
+
+          <div class="field">
+            <label for="religion">Религиозные предпочтения</label>
+            <select id="religion">
+              <option value="" selected>Выберите (опционально)</option>
+              <option value="halal">Халяль</option>
+              <option value="kosher">Кошер</option>
+              <option value="vegetarian">Вегетарианство</option>
+              <option value="vegan">Веганство</option>
+              <option value="none">Без ограничений</option>
+            </select>
+          </div>
+
+          <div style="margin-top:14px;">
+            <label style="display:block; margin-bottom:8px;">Проблемы со здоровьем</label>
+            <div class="checks">
+              <label class="chk"><input type="checkbox" value="diabetes" /> Диабет</label>
+              <label class="chk"><input type="checkbox" value="hypertension" /> Гипертония</label>
+              <label class="chk"><input type="checkbox" value="heart" /> Проблемы с сердцем</label>
+              <label class="chk"><input type="checkbox" value="gi" /> Проблемы с ЖКТ</label>
+              <label class="chk"><input type="checkbox" value="thyroid" /> Проблемы с щитовидной железой</label>
+              <label class="chk"><input type="checkbox" value="anemia" /> Анемия</label>
+              <label class="chk"><input type="checkbox" value="cholesterol" /> Высокий холестерин</label>
+              <label class="chk"><input type="checkbox" value="arthritis" /> Артрит</label>
+            </div>
+          </div>
+
+          <div class="field" style="margin-top:14px;">
+            <label for="allergies">Аллергии</label>
+            <textarea id="allergies" placeholder="Укажите продукты или вещества, на которые у вас аллергия"></textarea>
+          </div>
+
+          <div class="field" style="margin-top:14px;">
+            <label for="meds">Принимаемые лекарства</label>
+            <textarea id="meds" placeholder="Перечислите лекарства, которые вы принимаете"></textarea>
+          </div>
+
+          <div class="field" style="margin-top:14px;">
+            <label for="notes">Дополнительные заметки</label>
+            <textarea id="notes" placeholder="Любая дополнительная информация, которую стоит учесть"></textarea>
+          </div>
+        </div>
+
+        <div class="actions">
+          <button class="btn" id="saveBtn" type="button">
+            <!-- save icon -->
+            <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+              <path d="M4 7a2 2 0 0 1 2-2h10l4 4v10a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V7Z" stroke="#fff" stroke-width="2" stroke-linejoin="round"/>
+              <path d="M8 5v6h8V5" stroke="#fff" stroke-width="2" stroke-linecap="round"/>
+              <path d="M8 21v-7h8v7" stroke="#fff" stroke-width="2" stroke-linecap="round"/>
+            </svg>
+            Сохранить профиль
+          </button>
+        </div>
+      </div>
+
+      <!-- RIGHT -->
+      <aside>
+        <div class="card stat-card">
+          <div class="stat-ico" aria-hidden="true">
+            <!-- dot -->
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none">
+              <circle cx="12" cy="12" r="6" fill="currentColor"/>
+            </svg>
+          </div>
+          <div class="stat-title">Ваша статистика</div>
+        </div>
+
+        <div class="tip">
+          <div class="tip-head">
+            <span aria-hidden="true">💡</span> Совет
+          </div>
+          <p>
+            Регулярно обновляйте свой профиль для получения актуальных рекомендаций.
+            Точные данные помогут составить оптимальный план питания.
+          </p>
+        </div>
+      </aside>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+      © 2026 Здоровая Жизнь. AI-powered платформа для здорового питания и образа жизни
+    </div>
+  </footer>
+
+  <div class="toast" id="toast">Профиль сохранён</div>
+
+  <script>
+    // ====== интерактивы: сохранение/загрузка профиля + валидация ======
+    const STORAGE_KEY = "healthy_life_profile_v1";
+
+    const els = {
+      lastName: document.getElementById("lastName"),
+      firstName: document.getElementById("firstName"),
+      middleName: document.getElementById("middleName"),
+      age: document.getElementById("age"),
+      gender: document.getElementById("gender"),
+      weight: document.getElementById("weight"),
+      height: document.getElementById("height"),
+      targetWeight: document.getElementById("targetWeight"),
+      activity: document.getElementById("activity"),
+      goal: document.getElementById("goal"),
+      religion: document.getElementById("religion"),
+      allergies: document.getElementById("allergies"),
+      meds: document.getElementById("meds"),
+      notes: document.getElementById("notes"),
+      saveBtn: document.getElementById("saveBtn"),
+      toast: document.getElementById("toast"),
+      // sections for invalid highlighting
+      personalCard: document.querySelector('[data-section="personal"]'),
+      physicalCard: document.querySelector('[data-section="physical"]'),
+      healthCard: document.querySelector('[data-section="health"]')
+    };
+
+    function getHealthChecks(){
+      return Array.from(document.querySelectorAll('.checks input[type="checkbox"]:checked'))
+        .map(x => x.value);
+    }
+
+    function setHealthChecks(values){
+      const set = new Set(values || []);
+      document.querySelectorAll('.checks input[type="checkbox"]').forEach(cb => {
+        cb.checked = set.has(cb.value);
+      });
+    }
+
+    function showToast(text){
+      els.toast.textContent = text;
+      els.toast.classList.add("show");
+      clearTimeout(showToast._t);
+      showToast._t = setTimeout(() => els.toast.classList.remove("show"), 1700);
+    }
+
+    function saveProfile(){
+      const profile = {
+        lastName: els.lastName.value.trim(),
+        firstName: els.firstName.value.trim(),
+        middleName: els.middleName.value.trim(),
+        age: els.age.value ? Number(els.age.value) : null,
+        gender: els.gender.value || "",
+        weight: els.weight.value ? Number(els.weight.value) : null,
+        height: els.height.value ? Number(els.height.value) : null,
+        targetWeight: els.targetWeight.value ? Number(els.targetWeight.value) : null,
+        activity: els.activity.value || "",
+        goal: els.goal.value || "",
+        religion: els.religion.value || "",
+        health: getHealthChecks(),
+        allergies: els.allergies.value.trim(),
+        meds: els.meds.value.trim(),
+        notes: els.notes.value.trim(),
+        updatedAt: new Date().toISOString()
+      };
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(profile));
+      return profile;
+    }
+
+    function loadProfile(){
+      const raw = localStorage.getItem(STORAGE_KEY);
+      if(!raw) return null;
+      try{
+        return JSON.parse(raw);
+      }catch{
+        return null;
+      }
+    }
+
+    function applyProfile(p){
+      if(!p) return;
+      els.lastName.value = p.lastName || "";
+      els.firstName.value = p.firstName || "";
+      els.middleName.value = p.middleName || "";
+      els.age.value = (p.age ?? "") === null ? "" : (p.age ?? "");
+      els.gender.value = p.gender || "";
+      els.weight.value = (p.weight ?? "") === null ? "" : (p.weight ?? "");
+      els.height.value = (p.height ?? "") === null ? "" : (p.height ?? "");
+      els.targetWeight.value = (p.targetWeight ?? "") === null ? "" : (p.targetWeight ?? "");
+      els.activity.value = p.activity || "";
+      els.goal.value = p.goal || "";
+      els.religion.value = p.religion || "";
+      setHealthChecks(p.health || []);
+      els.allergies.value = p.allergies || "";
+      els.meds.value = p.meds || "";
+      els.notes.value = p.notes || "";
+    }
+
+    // ---- простая валидация (можно расширять) ----
+    function setInvalid(card, state){
+      card.classList.toggle("invalid", state);
+    }
+
+    function validate(){
+      // В макете не видно “*”, поэтому делаем мягкую проверку:
+      // обязательные поля: Возраст, Пол, Вес, Рост, Активность, Цель
+      const needAge = !!els.age.value;
+      const needGender = !!els.gender.value;
+      const needWeight = !!els.weight.value;
+      const needHeight = !!els.height.value;
+      const needActivity = !!els.activity.value;
+      const needGoal = !!els.goal.value;
+
+      setInvalid(els.personalCard, !(needAge && needGender));
+      setInvalid(els.physicalCard, !(needWeight && needHeight && needActivity && needGoal));
+
+      // Health card не обязательный
+      setInvalid(els.healthCard, false);
+
+      const ok = (needAge && needGender && needWeight && needHeight && needActivity && needGoal);
+      return ok;
+    }
+
+    // autosave (приятный интерактив)
+    function debounce(fn, ms=400){
+      let t;
+      return (...args) => {
+        clearTimeout(t);
+        t = setTimeout(() => fn(...args), ms);
+      };
+    }
+
+    const autoSave = debounce(() => {
+      saveProfile();
+    }, 450);
+
+    // attach change listeners for autosave
+    [
+      els.lastName, els.firstName, els.middleName, els.age, els.gender,
+      els.weight, els.height, els.targetWeight, els.activity, els.goal,
+      els.religion, els.allergies, els.meds, els.notes
+    ].forEach(el => {
+      el.addEventListener("input", autoSave);
+      el.addEventListener("change", autoSave);
+    });
+    document.querySelectorAll('.checks input[type="checkbox"]').forEach(cb => {
+      cb.addEventListener("change", autoSave);
+    });
+
+    els.saveBtn.addEventListener("click", () => {
+      const ok = validate();
+      saveProfile();
+      if(ok){
+        showToast("Профиль сохранён");
+      }else{
+        showToast("Заполните обязательные поля");
+        // мягко прокрутим к первому проблемному блоку
+        const firstInvalid = document.querySelector(".invalid");
+        if(firstInvalid) firstInvalid.scrollIntoView({ behavior:"smooth", block:"start" });
+      }
+    });
+
+    // init
+    const existing = loadProfile();
+    if(existing){
+      applyProfile(existing);
+    }else{
+      // демо-значения как в макете
+      els.lastName.value = "Иванов";
+      els.firstName.value = "Иван";
+      els.middleName.value = "Иванович";
+      els.age.value = "25";
+      els.weight.value = "70";
+      els.height.value = "175";
+      els.targetWeight.value = "65";
+      saveProfile();
+    }
+  </script>
+</body>
+</html>
